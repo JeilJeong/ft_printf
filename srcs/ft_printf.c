@@ -6,13 +6,78 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/20 12:12:42 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/21 18:50:57 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_parse_format(const char *format)
+#include "../includes/ft_printf.h"
+
+t_flag	ft_init_flag(void)
 {
-	
+	t_flag	flag;
+
+	flag.minus = 0;
+	flag.zero = 0;
+	flag.width = 0;
+	flag.dot = -1;
+	flag.type = 0;
+	return  (flag);
+}
+
+int	ft_is_type(char c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd'
+			|| c == 'i' || c == 'u' || c == 'x'
+			|| c == 'X' || c == '%')
+		return (1);
+	return (0);
+}
+
+void	ft_asterisk_flag(t_flag *flag, const char *format, int i)
+{
+}
+
+void	ft_num_flag(t_flag *flag, const char *format, int i)
+{
+}
+
+void	ft_check_flag(t_flag *flag, const char *format, int i)
+{
+	// When the input is width:20 or precision:.20, in that case zero exist just for digit.
+	if (format[i] == '0' && flag->width == 0 && flag->dot == -1)
+		flag->zero = 1;
+	else if (format[i] == '-')
+		flag->minus = 1;
+	else if (format[i] == '.')
+		flag->dot = 0;
+	else if (format[i] == '*')
+		ft_asterisk_flag(flag, format, i);
+	else if (ft_is_num(format[i]))
+		ft_num_flag(flag, format, i);
+}
+
+int	ft_parse_format(const char *format)
+{
+	int	i;
+	int	count;
+	t_flag	flag;
+
+	i = 0;
+	count = 0;
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			//restore i value for printing %
+			flag = ft_init_flag();
+			while (format[++i] != '\0' && !ft_is_type(format[i]))
+				ft_check_flag(&flag, format, i);
+			flag->type = format[i++];
+		}
+		else
+			count += ft_putchar(format[i++], 1);
+	}
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
@@ -20,5 +85,8 @@ int	ft_printf(const char *format, ...)
 	va_list	ap;
 
 	va_start(ap, format);
+	if (format == NULL)
+		return (-1);
 	ft_parse_format(format);
 }
+
