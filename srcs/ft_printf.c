@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/22 11:30:15 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/22 21:16:18 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,31 @@ void	ft_check_flag(va_list ap, t_flag *flag, const char *format, int i)
 
 void	ft_flag_priority(t_flag *flag)
 {
-	if ((flag->
+	if (flag->type != '%' && (flag->minus == 1 || flag->dot != -1))
+		flag->zero = 0;
+	else if (flag->type == '%' && flag->minus == 1)
+		flag->zero = 0;
+}
+
+int	ft_print_arg(va_list ap, t_flag *flag)
+{
+	int	count;
+
+	count = 0;
+	if (flag->type == 'c')
+		;
+	else if (flag->type == 's')
+		;
+	else if (flag->type == 'p')
+		;
+	else if (flag->type == 'd' || flag->type == 'i')
+		;
+	else if (flag->type == 'u' || flag->type == 'x'
+			|| flag->type == 'X')
+		;
+	else if (flag->type == '%')
+		;
+	return (count);
 }
 
 int	ft_parse_format(va_list ap, const char *format)
@@ -96,6 +120,7 @@ int	ft_parse_format(va_list ap, const char *format)
 				ft_check_flag(ap, &flag, format, i);
 			flag->type = format[i++];
 			ft_flag_priority(&flag);
+			count += ft_print_arg(ap, &flag);
 		}
 		else
 			count += ft_putchar(format[i++], 1);
