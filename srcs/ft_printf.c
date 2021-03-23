@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 14:48:57 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 15:34:13 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,36 @@ int	ft_is_type(char c)
 	return (0);
 }
 
-void	ft_asterisk_flag(t_flag *flag, const char *format, int i)
+void	ft_asterisk_flag(va_list ap, t_flag *flag)
 {
 	// asterisk that is related with format width flag
-	if (format->dot == -1)
+	if (flag->dot == -1)
 	{
-		if ((format->width = va_arg(ap, int)) < 0)
+		if ((flag->width = va_arg(ap, int)) < 0)
 		{
-			format->minus = 1;
-			format->width *= -1;
+			flag->minus = 1;
+			flag->width *= -1;
 		}
 	}
 	// asterisk that is related with format precision flag
 	else
-		format->dot = va_arg(ap, int);
+		flag->dot = va_arg(ap, int);
 
 }
 
 void	ft_num_flag(t_flag *flag, const char *format, int i)
 {
-	if (format->dot == -1)
-		format->width = format->width * 10 + (format[i] - '0');
+	if (flag->dot == -1)
+		flag->width = flag->width * 10 + (format[i] - '0');
 	else
-		format->dot = format->dot * 10 + (format[i] - '0');
+		flag->dot = flag->dot * 10 + (format[i] - '0');
+}
+
+int	ft_is_num(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
 void	ft_check_flag(va_list ap, t_flag *flag, const char *format, int i)
@@ -68,7 +75,7 @@ void	ft_check_flag(va_list ap, t_flag *flag, const char *format, int i)
 	else if (format[i] == '.')
 		flag->dot = 0;
 	else if (format[i] == '*')
-		ft_asterisk_flag(ap, flag, format, i);
+		ft_asterisk_flag(ap, flag);
 	else if (ft_is_num(format[i]))
 		ft_num_flag(flag, format, i);
 }
@@ -88,7 +95,7 @@ int	ft_print_width(t_flag *flag, int len)
 	int	count;
 
 	count = 0;
-	while (len < width)
+	while (len < flag->width)
 	{
 		if (flag->zero)
 			ft_putchar('0', 1);
@@ -209,7 +216,7 @@ int	ft_parse_format(va_list ap, const char *format)
 			flag = ft_init_flag();
 			while (format[++i] != '\0' && !ft_is_type(format[i]))
 				ft_check_flag(ap, &flag, format, i);
-			flag->type = format[i++];
+			flag.type = format[i++];
 			ft_flag_priority(&flag);
 			count += ft_print_arg(ap, &flag);
 		}
@@ -221,11 +228,15 @@ int	ft_parse_format(va_list ap, const char *format)
 
 int	ft_printf(const char *format, ...)
 {
+	int	count;
 	va_list	ap;
 
+	count = 0;
 	va_start(ap, format);
 	if (format == NULL)
 		return (-1);
-	ft_parse_format(ap, format);
+	count = ft_parse_format(ap, format);
+	va_end(ap);
+	return (count);
 }
 

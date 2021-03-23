@@ -12,10 +12,10 @@ $(TARGET): $(OBJ)
 .c.o:
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-clena:
+clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(TARGET)
 
 re: fclean all

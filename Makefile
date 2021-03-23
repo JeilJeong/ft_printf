@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra
 SRC=$(wildcard srcs/*.c)
 OBJ=$(SRC:.c=.o)
 HEADER=./includes
@@ -13,10 +13,10 @@ $(TARGET): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-clena:
+clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(TARGET)
 
 re: fclean all
