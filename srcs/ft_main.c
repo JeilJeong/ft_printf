@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 16:21:18 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:56:53 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 	unsigned int	u = 3;
 
 // ****************** type [c] test **************************
-	printf(" ****************** type [c] test **************************\n");
+/*	printf(" ****************** type [c] test **************************\n");
 	printf("test: [%%c]\n");
 	printf(" | ret: %d\n", printf("[%c]", c));
 	ft_printf(" | ret: %d\n", ft_printf("[%c]", c));
@@ -165,6 +165,7 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%0*.*c]", 3, 1, c));
 	ft_printf(" | ret: %d\n", ft_printf("[%0*.*c]", 3, 1, c));
 	printf("\n");
+*/
 // ****************** type [s] test **************************
 	printf(" ****************** type [s] test **************************\n");
 	printf("test: [%%s]\n");
@@ -307,6 +308,7 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%0*.*s]", 3, 1, s));
 	ft_printf(" | ret: %d\n", ft_printf("[%0*.*s]", 3, 1, s));
 	printf("\n");
+/*
 // ****************** type [p] test **************************
 	printf(" ****************** type [p] test **************************\n");
 	printf("test: [%%p]\n");
@@ -1301,4 +1303,5 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%0*.*%]", 3, 1));
 	ft_printf(" | ret: %d\n", ft_printf("[%0*.*%]", 3, 1));
 	printf("\n");
+*/
 }
