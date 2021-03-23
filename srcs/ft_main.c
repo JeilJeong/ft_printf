@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 18:14:48 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:17:09 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(void)
 {
 	char		c = 'c';
-	char		*s = "test" ;
+	char		*s = "ab" ;
 	int			d = 3;
 	int			i = 3;
 	int			x = 3;
