@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/22 21:16:18 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 14:02:28 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,91 @@ void	ft_flag_priority(t_flag *flag)
 		flag->zero = 0;
 }
 
+int	ft_print_width(t_flag *flag, int len)
+{
+	int	count;
+
+	count = 0;
+	while (len < width)
+	{
+		if (flag->zero)
+			ft_putchar('0', 1);
+		else
+			ft_putchar(' ', 1);
+		len++;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_print_char(int c, t_flag *flag)
+{
+	int	count;
+	int	len;
+	
+	count = 0;
+	len = 1;
+	if (flag->minus)
+		count += ft_putchar(c, 1);
+	count += ft_print_width(flag, len);
+	if (!flag->minus)
+		count += ft_putchar(c, 1);
+	return (count);
+}
+
+int	ft_str_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (6);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_put_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i] != '\0')
+		ft_putchar(str[i++], 1);
+	return (i);
+}
+
+int	ft_print_str(char *str, t_flag *flag)
+{
+	int	count;
+	int	len;
+
+	count = 0;
+	len = ft_str_len(str);
+	if (flag->minus)
+		count += ft_put_str(str);
+	count += ft_print_width(flag, len);
+	if (!flag->minus)
+		count += ft_put_str(str);
+	return (count);
+}
+
 int	ft_print_arg(va_list ap, t_flag *flag)
 {
 	int	count;
 
 	count = 0;
 	if (flag->type == 'c')
-		;
+		count = ft_print_char(va_arg(ap, int), flag);
 	else if (flag->type == 's')
-		;
+		count = ft_print_str(va_arg(ap, char *), flag);
 	else if (flag->type == 'p')
-		;
+		count = ft_print_;
 	else if (flag->type == 'd' || flag->type == 'i')
 		;
 	else if (flag->type == 'u' || flag->type == 'x'
