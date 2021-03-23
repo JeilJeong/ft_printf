@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 16:10:38 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 16:15:54 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%03c]", c));
 	ft_printf(" | ret: %d\n", ft_printf("[%03c]", c));
 	printf("\n");
+	printf("test: [%%3.c]");
+	printf(" | ret: %d\n", printf("[%3.c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%3.c]", c));
+	printf("\n");
 	printf("test: [%%3.0c]");
 	printf(" | ret: %d\n", printf("[%3.0c]", c));
 	ft_printf(" | ret: %d\n", ft_printf("[%3.0c]", c));
@@ -113,6 +117,30 @@ int	main(void)
 	printf("test: [%%3.4c]");
 	printf(" | ret: %d\n", printf("[%3.4c]", c));
 	ft_printf(" | ret: %d\n", ft_printf("[%3.4c]", c));
+	printf("\n");
+	printf("test: [%%03.c]");
+	printf(" | ret: %d\n", printf("[%03.c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.c]", c));
+	printf("\n");
+	printf("test: [%%03.0c]");
+	printf(" | ret: %d\n", printf("[%03.0c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.0c]", c));
+	printf("\n");
+	printf("test: [%%03.1c]");
+	printf(" | ret: %d\n", printf("[%03.1c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.1c]", c));
+	printf("\n");
+	printf("test: [%%03.2c]");
+	printf(" | ret: %d\n", printf("[%03.2c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.3c]", c));
+	printf("\n");
+	printf("test: [%%03.3c]");
+	printf(" | ret: %d\n", printf("[%03.3c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.3c]", c));
+	printf("\n");
+	printf("test: [%%03.4c]");
+	printf(" | ret: %d\n", printf("[%03.4c]", c));
+	ft_printf(" | ret: %d\n", ft_printf("[%03.4c]", c));
 	printf("\n");
 	printf("test: [%%-03.1c]");
 	printf(" | ret: %d\n", printf("[%-03.1c]", c));
