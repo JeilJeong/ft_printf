@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 14:02:28 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 14:48:57 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void	ft_check_flag(va_list ap, t_flag *flag, const char *format, int i)
 void	ft_flag_priority(t_flag *flag)
 {
 	if (flag->type != '%' && (flag->minus == 1 || flag->dot != -1))
+	{
 		flag->zero = 0;
+	}
 	else if (flag->type == '%' && flag->minus == 1)
 		flag->zero = 0;
 }
@@ -155,6 +157,21 @@ int	ft_print_str(char *str, t_flag *flag)
 	return (count);
 }
 
+int	ft_print_ull_num(unsigned long long num, t_flag *flag)
+{
+	return (1);
+}
+
+int	ft_print_int_num(int num, t_flag *flag)
+{
+	return (1);
+}
+
+int	ft_print_ui_num(unsigned int num, t_flag *flag)
+{
+	return (1);
+}
+
 int	ft_print_arg(va_list ap, t_flag *flag)
 {
 	int	count;
@@ -165,14 +182,14 @@ int	ft_print_arg(va_list ap, t_flag *flag)
 	else if (flag->type == 's')
 		count = ft_print_str(va_arg(ap, char *), flag);
 	else if (flag->type == 'p')
-		count = ft_print_;
+		count = ft_print_ull_num(va_arg(ap, unsigned long long), flag);
 	else if (flag->type == 'd' || flag->type == 'i')
-		;
+		count = ft_print_int_num(va_arg(ap, int), flag);
 	else if (flag->type == 'u' || flag->type == 'x'
 			|| flag->type == 'X')
-		;
+		count = ft_print_ui_num(va_arg(ap, unsigned int), flag);
 	else if (flag->type == '%')
-		;
+		count = ft_print_char('%', flag);
 	return (count);
 }
 
