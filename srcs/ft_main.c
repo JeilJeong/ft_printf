@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 17:56:53 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:12:23 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(void)
 	char		*p = &c;
 	unsigned int	u = 3;
 
+	test = 1;
 // ****************** type [c] test **************************
-/*	printf(" ****************** type [c] test **************************\n");
+	printf(" ****************** type [c] test **************************\n");
 	printf("test: [%%c]\n");
 	printf(" | ret: %d\n", printf("[%c]", c));
 	ft_printf(" | ret: %d\n", ft_printf("[%c]", c));
@@ -165,7 +166,6 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%0*.*c]", 3, 1, c));
 	ft_printf(" | ret: %d\n", ft_printf("[%0*.*c]", 3, 1, c));
 	printf("\n");
-*/
 // ****************** type [s] test **************************
 	printf(" ****************** type [s] test **************************\n");
 	printf("test: [%%s]\n");
@@ -200,7 +200,43 @@ int	main(void)
 	printf(" | ret: %d\n", printf("[%-.s]", s));
 	ft_printf(" | ret: %d\n", ft_printf("[%-.s]", s));
 	printf("\n");
-	printf("test: [%%0.s]\n");
+	printf("test: [%%-.1s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%-.2s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%-.3s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%-.4s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%-.5s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%.1s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%.2s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%.3s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%.4s]\n");
+	printf(" | ret: %d\n", printf("[%0.s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
+	printf("\n");
+	printf("test: [%%.5s]\n");
 	printf(" | ret: %d\n", printf("[%0.s]", s));
 	ft_printf(" | ret: %d\n", ft_printf("[%0.s]", s));
 	printf("\n");
@@ -213,6 +249,14 @@ int	main(void)
 	ft_printf(" | ret: %d\n", ft_printf("[%0.2s]", s));
 	printf("\n");
 	printf("test: [%%0.3s]\n");
+	printf(" | ret: %d\n", printf("[%0.3s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.3s]", s));
+	printf("\n");
+	printf("test: [%%0.4s]\n");
+	printf(" | ret: %d\n", printf("[%0.3s]", s));
+	ft_printf(" | ret: %d\n", ft_printf("[%0.3s]", s));
+	printf("\n");
+	printf("test: [%%0.5s]\n");
 	printf(" | ret: %d\n", printf("[%0.3s]", s));
 	ft_printf(" | ret: %d\n", ft_printf("[%0.3s]", s));
 	printf("\n");
