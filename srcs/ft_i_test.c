@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../includes/ft_test.h"
 
 void	ft_i_test(int i)
 {
