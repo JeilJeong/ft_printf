@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/24 20:41:39 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:45:05 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	ft_flag_priority(t_flag *flag)
 {
 	if (flag->type != '%' && (flag->minus == 1 || flag->dot != -1))
 	{
-		if (!(flag->type == 'c' && flag->minus == 0
-				&& flag->dot != -1))
+		if (!((flag->type == 'c' || flag->type == 's')
+				&& flag->minus == 0 && flag->dot != -1))
 			flag->zero = 0;
 	}
 	else if (flag->type == '%' && flag->minus == 1)
