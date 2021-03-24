@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/24 19:12:32 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/24 19:34:26 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	main(void)
 	char		*p = &c;
 	unsigned int	u = 3;
 
-	ft_c_test(c);
+	ft_s_test(s);
 }

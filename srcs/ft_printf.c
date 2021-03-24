@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 18:04:11 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:15:25 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,33 +136,59 @@ int	ft_str_len(char *str)
 	return (i);
 }
 
-int	ft_put_str(char *str)
+int	ft_put_str(char *str, t_flag *flag)
 {
 	int	i;
+	int	len;
 
 	i = 0;
+	len = flag->dot > 0 ? flag->dot : 0;
 	if (str == NULL)
 	{
 		write(1, "(null)", 6);
 		return (6);
 	}
-	while (str[i] != '\0')
+	while (str[i] != '\0' && i < len)
 		ft_putchar(str[i++], 1);
+	return (i);
+}
+
+int	ft_print_width_str(t_flag *flag, int len)
+{
+	int	i;
+	int	width;
+	int	prec;
+
+	i = 0;
+	width = flag->width;
+	prec = flag->dot > 0 ? flag->dot : 0;
+	prec = prec < len ? prec : len;
+	if (!flag->minus)
+	{
+		while (i < width && i < prec)
+		{
+			if (flag->zero)
+				ft_putchar('0', 1);
+			else
+				ft_putchar(' ', 1);
+			i++;
+		}
+	}
 	return (i);
 }
 
 int	ft_print_str(char *str, t_flag *flag)
 {
-	int	count;
 	int	len;
+	int	count;
 
-	count = 0;
 	len = ft_str_len(str);
+	count = 0;
 	if (flag->minus)
-		count += ft_put_str(str);
-	count += ft_print_width(flag, len);
+		count += ft_put_str(str, flag);
+	count += ft_print_width_str(flag, len);
 	if (!flag->minus)
-		count += ft_put_str(str);
+		count += ft_put_str(str, flag);
 	return (count);
 }
 

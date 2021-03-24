@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:32:34 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/23 15:30:49 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:12:09 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_flag_priority(t_flag *flag);
 int	ft_print_width(t_flag *flag, int len);
 int	ft_print_char(int c, t_flag *flag);
 int	ft_str_len(char *str);
-int	ft_put_str(char *str);
+int	ft_put_str(char *str, t_flag *flag);
+int	ft_print_width_str(t_flag *flag, int len);
 int	ft_print_str(char *str, t_flag *flag);
 int	ft_print_int_num(int num, t_flag *flag);
 int	ft_print_ull_num(unsigned long long num, t_flag *flag);
