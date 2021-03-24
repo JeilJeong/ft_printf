@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/24 20:45:05 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/24 22:55:51 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,9 +200,31 @@ int	ft_print_ull_num(unsigned long long num, t_flag *flag)
 	return (1);
 }
 
+int	ft_putnbr(int num, int count)
+{
+	if (num == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		count = 11;
+	}
+	else
+	{
+		if (num < 0)
+			num *= -1;
+		if (num >= 10)
+			count = ft_putnbr(num / 10, count);
+		count += ft_putchar(((num % 10) + '0'), 1);
+	}
+	return (count);
+}
+
 int	ft_print_int_num(int num, t_flag *flag)
 {
-	return (1);
+	int	count;
+
+	count = 0;
+	count = ft_putnbr(num, count);
+	return (count);
 }
 
 int	ft_print_ui_num(unsigned int num, t_flag *flag)
