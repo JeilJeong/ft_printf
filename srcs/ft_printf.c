@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 16:29:11 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 18:13:43 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,12 +244,14 @@ int	ft_print_dot_sub(int len, int max, char c)
 	return (count);
 }
 
-int	ft_print_dot(t_flag *flag, int len)
+int	ft_print_dot(int num, t_flag *flag, int len)
 {
 	int	count;
 	
 	count = 0;
-	if (flag->dot > len && flag->dot >= flag->width)
+	if (num == 0 && flag->dot == 0)
+		count += ft_print_dot_sub(0, flag->width, ' ');
+	else if (flag->dot > len && flag->dot >= flag->width)
 		count += ft_print_dot_sub(len, flag->dot, '0');
 	else if (flag->dot > len && flag->dot < flag->width)
 	{
@@ -261,7 +263,7 @@ int	ft_print_dot(t_flag *flag, int len)
 	return (count);
 }
 
-int	ft_print_dot_minus(t_flag *flag, int len)
+int	ft_print_dot_minus(int num, t_flag *flag, int len)
 {
 	int	count;
 	int	dot_len;
@@ -298,15 +300,15 @@ int	ft_print_int_num(int num, t_flag *flag)
 		if (flag->width > len && flag->dot == -1)
 			count += ft_print_width(flag, len);
 		else if (flag->width > len && flag->dot != -1)
-			count += ft_print_dot(flag, len);
+			count += ft_print_dot(num, flag, len);
 		else if (flag->width <= len && flag->dot != -1)
-			count += ft_print_dot(flag, len);
-		count += ft_putnbr(num, 0);
+			count += ft_print_dot(num, flag, len);
+		count += (num == 0 && flag->dot == 0) ? 0 :  ft_putnbr(num, 0);
 	}
 	else
 	{
 		if (flag->dot != -1)
-			count += ft_print_dot_minus(flag, len);
+			count += ft_print_dot_minus(num, flag, len);
 		count += ft_putnbr(num, 0);
 		if (flag->width > (flag->dot > len ? flag->dot : len))
 			count += ft_print_width_minus(flag, len);
