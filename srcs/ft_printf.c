@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/24 22:55:51 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:01:01 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,25 +205,102 @@ int	ft_putnbr(int num, int count)
 	if (num == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		count = 11;
+		count += 11;
 	}
 	else
 	{
 		if (num < 0)
 			num *= -1;
 		if (num >= 10)
-			count = ft_putnbr(num / 10, count);
+			count += ft_putnbr(num / 10, count);
 		count += ft_putchar(((num % 10) + '0'), 1);
 	}
+	return (count);
+}
+
+int	ft_num_len(int	num)
+{
+	int	i;
+
+	i = 1;
+	while (num / 10 >= 10)
+	{
+		i++;
+		num /= 10;
+	}
+	return (i);
+}
+
+int	ft_print_dot(t_flag *flag, int len)
+{
+	int	count;
+	int	dot_len;
+	int	width_len;
+
+	count = 0;
+	dot_len = len - 1;
+	if (flag->dot > len && flag->dot >= flag->width)
+		while (++dot_len < flag->dot)
+			count += ft_putchar('0', 1);
+	else if (flag->dot > len && flag->dot < flag->width)
+	{
+		width_len = flag->dot - 1;
+		while (++width_len < flag->width)
+			count += ft_putchar(' ', 1);
+		while (++dot_len < flag->dot)
+			count += ft_putchar('0', 1);
+	}
+	return (count);
+}
+
+int	ft_print_dot_minus(t_flag *flag, int len)
+{
+	int	count;
+	int	dot_len;
+
+	count = 0;
+	dot_len = len - 1;
+	if (flag->dot > len)
+		while (++dot_len < flag->dot)
+			count += ft_putchar('0', 1);
+	return (count);
+}
+
+int	ft_print_width_minus(t_flag *flag, int len)
+{
+	int	count;
+	int	width_len;
+
+	count = 0;
+	width_len = (flag->dot > len ? flag->dot : len) - 1;
+	while (++width_len < flag->width)
+		count += ft_putchar(' ', 1);
 	return (count);
 }
 
 int	ft_print_int_num(int num, t_flag *flag)
 {
 	int	count;
+	int	len;
 
 	count = 0;
-	count = ft_putnbr(num, count);
+	len = ft_num_len(num);
+	if (!flag->minus)
+	{
+		if (flag->width > len && flag->dot == -1)
+			count += ft_print_width(flag, len);
+		else if (flag->width > len && flag->dot != -1)
+			count += ft_print_dot(flag, len);
+		count += ft_putnbr(num, 0);
+	}
+	else
+	{
+		if (flag->dot != -1)
+			count += ft_print_dot_minus(flag, len);
+		count += ft_putnbr(num, 0);
+		if (flag->width > (flag->dot > len ? flag->dot : len))
+			count += ft_print_width_minus(flag, len);
+	}
 	return (count);
 }
 
