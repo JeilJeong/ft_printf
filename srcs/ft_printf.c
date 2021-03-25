@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 18:13:43 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 19:06:53 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,7 +270,7 @@ int	ft_print_dot_minus(int num, t_flag *flag, int len)
 
 	count = 0;
 	dot_len = len - 1;
-	if (flag->dot > len)
+	if ((flag->dot > len) && !(num == 0 && flag->dot == 0))
 		while (++dot_len < flag->dot)
 			count += ft_putchar('0', 1);
 	return (count);
@@ -303,13 +303,13 @@ int	ft_print_int_num(int num, t_flag *flag)
 			count += ft_print_dot(num, flag, len);
 		else if (flag->width <= len && flag->dot != -1)
 			count += ft_print_dot(num, flag, len);
-		count += (num == 0 && flag->dot == 0) ? 0 :  ft_putnbr(num, 0);
+		count += (num == 0 && flag->dot == 0) ? 0 : ft_putnbr(num, 0);
 	}
 	else
 	{
 		if (flag->dot != -1)
 			count += ft_print_dot_minus(num, flag, len);
-		count += ft_putnbr(num, 0);
+		count += (num == 0 && flag->dot == 0) ? 0 : ft_putnbr(num, 0);
 		if (flag->width > (flag->dot > len ? flag->dot : len))
 			count += ft_print_width_minus(flag, len);
 	}
