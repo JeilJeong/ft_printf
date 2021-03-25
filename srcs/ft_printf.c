@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 15:06:25 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:48:34 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,6 +290,8 @@ int	ft_print_int_num(int num, t_flag *flag)
 		if (flag->width > len && flag->dot == -1)
 			count += ft_print_width(flag, len);
 		else if (flag->width > len && flag->dot != -1)
+			count += ft_print_dot(flag, len);
+		else if (flag->width <= len && flag->dot != -1)
 			count += ft_print_dot(flag, len);
 		count += ft_putnbr(num, 0);
 	}
