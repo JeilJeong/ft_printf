@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 15:01:01 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:06:25 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ int	ft_num_len(int	num)
 	int	i;
 
 	i = 1;
-	while (num / 10 >= 10)
+	while (num >= 10)
 	{
 		i++;
 		num /= 10;
