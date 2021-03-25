@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 16:27:04 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/25 16:29:11 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,32 +247,18 @@ int	ft_print_dot_sub(int len, int max, char c)
 int	ft_print_dot(t_flag *flag, int len)
 {
 	int	count;
-//	int	dot_len;
-//	int	width_len;
-
+	
 	count = 0;
-//	dot_len = len - 1;
 	if (flag->dot > len && flag->dot >= flag->width)
 		count += ft_print_dot_sub(len, flag->dot, '0');
-/*		while (++dot_len < flag->dot)
-			count += ft_putchar('0', 1);
-*/	else if (flag->dot > len && flag->dot < flag->width)
+	else if (flag->dot > len && flag->dot < flag->width)
 	{
 		count += ft_print_dot_sub(flag->dot, flag->width, ' ');
 		count += ft_print_dot_sub(len, flag->dot, '0');
 	}
-/*	{
-		width_len = flag->dot - 1;
-		while (++width_len < flag->width)
-			count += ft_putchar(' ', 1);
-		while (++dot_len < flag->dot)
-			count += ft_putchar('0', 1);
-	}
-*/	else if (flag->dot <= len && flag->width > len)
+	else if (flag->dot <= len && flag->width > len)
 		count += ft_print_dot_sub(len, flag->width, ' ');
-/*		while (++dot_len < flag->width)
-			count += ft_putchar(' ', 1);
-*/	return (count);
+	return (count);
 }
 
 int	ft_print_dot_minus(t_flag *flag, int len)
