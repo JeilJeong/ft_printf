@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/27 17:52:01 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/27 20:03:25 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,132 +195,101 @@ int	ft_print_str(char *str, t_flag *flag)
 	return (count);
 }
 
-int	ft_print_ull_num(unsigned long long num, t_flag *flag)
+int	ft_num_base(t_flag *flag)
 {
-	return (1);
+	char	type;
+
+	type = flag->type;
+	if (type == 'x' || type == 'X' || type == 'p')
+		return (16);
+	return (10);
 }
 
-int	ft_putnbr(int num, int count)
+unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag)
 {
-	if (num == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		count += 11;
-	}
-	else
-	{
-		if (num < 0)
-			num *= -1;
-		if (num >= 10)
-			count += ft_putnbr(num / 10, count);
-		count += ft_putchar(((num % 10) + '0'), 1);
-	}
-	return (count);
+	if ((flag->type == 'd' || flag->type == 'i') && (int)num < 0)
+		num *= -1;
+	return (num);
 }
 
-int	ft_num_len(int	num)
+int	ft_num_len(unsigned long long num, t_flag *flag)
 {
 	int	i;
+	int	base;
 
 	i = 1;
-	while (num >= 10)
+	base = ft_num_base(flag);
+	num = ft_sign_change(num, flag);
+	while (num / base >= base)
 	{
 		i++;
-		num /= 10;
+		num /= base;
 	}
 	return (i);
 }
 
-int	ft_print_dot_sub(int len, int max, char c)
+void	ft_putnum(char *buf, unsigned long long num, t_flag *flag)
 {
-	int	count;
-
-	count = 0;
-	while (len < max)
-	{
-		count += ft_putchar(c, 1);
-		len ++;
-	}
-	return (count);
-}
-
-int	ft_print_dot(int num, t_flag *flag, int len)
-{
-	int	count;
+	int	base;
+	int	i;
 	
-	count = 0;
-	if (num == 0 && flag->dot == 0)
-		count += ft_print_dot_sub(0, flag->width, ' ');
-	else if (flag->dot > len && flag->dot >= flag->width)
-		count += ft_print_dot_sub(len, flag->dot, '0');
-	else if (flag->dot > len && flag->dot < flag->width)
+	base = ft_num_base(flag);
+	num = ft_sign_change(num, flag);
+	if (num >= base)
+		ft_putnum(buf, num / 10, flag);
+	i = 0;
+	while (buf[i] != '\0')
+		i++;
+	buf[i] = (num % base) + '0';
+}
+
+char	*ft_init_buf(unsigned long long num, t_flag *flag)
+{
+	char	*buf;
+	int	buf_len;
+	int	num_len;
+	int	i;
+
+	num_len = ft_num_len(num, flag);
+	buf_len = (num_len > flag->dot) ? num_len : flag->dot;
+	if ((buf = (char *)malloc(sizeof(char) * (buf_len + 1))) == NULL)
+		return (NULL);
+	buf[buf_len] = '\0';
+	i = 0;
+	while (buf[i] != '\0')
+		buf[i++] = '\0';
+	i = 0;
+	while (num_len + i < buf_len)
+		buf[i++] = '0';
+	ft_putnum(buf, num, flag);
+	return (buf);
+}
+
+int	ft_putstr(char *str)
+{
+	int	i;
+	
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\0')
 	{
-		count += ft_print_dot_sub(flag->dot, flag->width, ' ');
-		count += ft_print_dot_sub(len, flag->dot, '0');
+		write(1, &str[i], 1);
+		i++;
 	}
-	else if (flag->dot <= len && flag->width > len)
-		count += ft_print_dot_sub(len, flag->width, ' ');
-	return (count);
+	return (i);
 }
 
-int	ft_print_dot_minus(int num, t_flag *flag, int len)
+int	ft_print_int_num(unsigned long long num, t_flag *flag)
 {
-	int	count;
-	int	dot_len;
+	int 	count;
+	char	*buf;
 
 	count = 0;
-	dot_len = len - 1;
-	if ((flag->dot > len) && !(num == 0 && flag->dot == 0))
-		while (++dot_len < flag->dot)
-			count += ft_putchar('0', 1);
+	if ((buf = ft_init_buf(num, flag)) == NULL)
+		return (NULL);
+	ft_putstr(buf);
 	return (count);
-}
-
-int	ft_print_width_minus(int num, t_flag *flag, int len)
-{
-	int	count;
-	int	width_len;
-
-	count = 0;
-	width_len = (flag->dot > len ? flag->dot : len) - 1;
-	if (num == 0 && flag->dot == 0)
-		width_len = -1;
-	while (++width_len < flag->width)
-		count += ft_putchar(' ', 1);
-	return (count);
-}
-
-int	ft_print_int_num(int num, t_flag *flag)
-{
-	int	count;
-	int	len;
-
-	count = 0;
-	len = ft_num_len(num);
-	if (!flag->minus)
-	{
-		if (flag->width > len && flag->dot == -1)
-			count += ft_print_width(flag, len);
-		else if (flag->width > len && flag->dot != -1)
-			count += ft_print_dot(num, flag, len);
-		else if (flag->width <= len && flag->dot != -1)
-			count += ft_print_dot(num, flag, len);
-		count += (num == 0 && flag->dot == 0) ? 0 : ft_putnbr(num, 0);
-	}
-	else
-	{
-		if (flag->dot != -1)
-			count += ft_print_dot_minus(num, flag, len);
-		count += (num == 0 && flag->dot == 0) ? 0 : ft_putnbr(num, 0);
-		if (flag->width >= (flag->dot > len ? flag->dot : len))
-			count += ft_print_width_minus(num, flag, len);
-	}
-	return (count);
-}
-
-int	ft_print_ui_num(unsigned int num, t_flag *flag)
-{
-	return (1);
 }
 
 int	ft_print_arg(va_list ap, t_flag *flag)
@@ -333,12 +302,12 @@ int	ft_print_arg(va_list ap, t_flag *flag)
 	else if (flag->type == 's')
 		count = ft_print_str(va_arg(ap, char *), flag);
 	else if (flag->type == 'p')
-		count = ft_print_ull_num(va_arg(ap, unsigned long long), flag);
+		count = ft_print_int_num(va_arg(ap, unsigned long long), flag);
 	else if (flag->type == 'd' || flag->type == 'i')
-		count = ft_print_int_num(va_arg(ap, int), flag);
+		count = ft_print_int_num((unsigned long long)va_arg(ap, int), flag);
 	else if (flag->type == 'u' || flag->type == 'x'
 			|| flag->type == 'X')
-		count = ft_print_ui_num(va_arg(ap, unsigned int), flag);
+		count = ft_print_int_num((unsigned long long)va_arg(ap, unsigned int), flag);
 	else if (flag->type == '%')
 		count = ft_print_char('%', flag);
 	return (count);

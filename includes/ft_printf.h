@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:32:34 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/24 20:12:09 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/27 20:02:24 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include "ft_utils.h"
 
 typedef struct	s_flag
@@ -39,9 +40,7 @@ int	ft_str_len(char *str);
 int	ft_put_str(char *str, t_flag *flag);
 int	ft_print_width_str(t_flag *flag, int len);
 int	ft_print_str(char *str, t_flag *flag);
-int	ft_print_int_num(int num, t_flag *flag);
-int	ft_print_ull_num(unsigned long long num, t_flag *flag);
-int	ft_print_ui_num(unsigned int num, t_flag *flag);
+int	ft_print_int_num(unsigned long long num, t_flag *flag);
 int	ft_print_arg(va_list ap, t_flag *flag);
 int	ft_parse_format(va_list ap, const char *format);
 int	ft_is_num(char c);
