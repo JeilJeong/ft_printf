@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/25 19:06:53 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/27 17:46:46 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,13 +276,15 @@ int	ft_print_dot_minus(int num, t_flag *flag, int len)
 	return (count);
 }
 
-int	ft_print_width_minus(t_flag *flag, int len)
+int	ft_print_width_minus(int num, t_flag *flag, int len)
 {
 	int	count;
 	int	width_len;
 
 	count = 0;
 	width_len = (flag->dot > len ? flag->dot : len) - 1;
+	if (num == 0 && flag->dot == 0)
+		width_len = 0;
 	while (++width_len < flag->width)
 		count += ft_putchar(' ', 1);
 	return (count);
@@ -311,7 +313,7 @@ int	ft_print_int_num(int num, t_flag *flag)
 			count += ft_print_dot_minus(num, flag, len);
 		count += (num == 0 && flag->dot == 0) ? 0 : ft_putnbr(num, 0);
 		if (flag->width > (flag->dot > len ? flag->dot : len))
-			count += ft_print_width_minus(flag, len);
+			count += ft_print_width_minus(num, flag, len);
 	}
 	return (count);
 }
