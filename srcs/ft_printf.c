@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/27 20:03:25 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/28 18:49:00 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ int	ft_num_len(unsigned long long num, t_flag *flag)
 	i = 1;
 	base = ft_num_base(flag);
 	num = ft_sign_change(num, flag);
-	while (num / base >= base)
+	while (num >= base)
 	{
 		i++;
 		num /= base;
@@ -228,7 +228,7 @@ int	ft_num_len(unsigned long long num, t_flag *flag)
 	return (i);
 }
 
-void	ft_putnum(char *buf, unsigned long long num, t_flag *flag)
+void	ft_put_num(char *buf, unsigned long long num, t_flag *flag)
 {
 	int	base;
 	int	i;
@@ -236,7 +236,7 @@ void	ft_putnum(char *buf, unsigned long long num, t_flag *flag)
 	base = ft_num_base(flag);
 	num = ft_sign_change(num, flag);
 	if (num >= base)
-		ft_putnum(buf, num / 10, flag);
+		ft_put_num(buf, num / 10, flag);
 	i = 0;
 	while (buf[i] != '\0')
 		i++;
@@ -260,12 +260,15 @@ char	*ft_init_buf(unsigned long long num, t_flag *flag)
 		buf[i++] = '\0';
 	i = 0;
 	while (num_len + i < buf_len)
-		buf[i++] = '0';
-	ft_putnum(buf, num, flag);
+	{
+		buf[i] = '0';
+		i++;
+	}
+	ft_put_num(buf, num, flag);
 	return (buf);
 }
 
-int	ft_putstr(char *str)
+int	ft_put_str_num(char *str)
 {
 	int	i;
 	
@@ -279,7 +282,18 @@ int	ft_putstr(char *str)
 	}
 	return (i);
 }
+/*
+void	ft_put_width(char *buf, unsigned long long num, t_flag *flag)
+{
+	int	diff;
 
+	diff = 0;
+	if (flag->dot < flag->width)
+	{
+		diff = flag->dot 
+	}
+}
+*/
 int	ft_print_int_num(unsigned long long num, t_flag *flag)
 {
 	int 	count;
@@ -288,7 +302,8 @@ int	ft_print_int_num(unsigned long long num, t_flag *flag)
 	count = 0;
 	if ((buf = ft_init_buf(num, flag)) == NULL)
 		return (NULL);
-	ft_putstr(buf);
+//	ft_put_width(buf, num, flag);
+	ft_put_str_num(buf);
 	return (count);
 }
 
