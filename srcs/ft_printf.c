@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/28 18:49:00 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/28 19:22:06 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,18 +282,50 @@ int	ft_put_str_num(char *str)
 	}
 	return (i);
 }
-/*
-void	ft_put_width(char *buf, unsigned long long num, t_flag *flag)
+
+char	*ft_create_width_buf(char *buf, int len, t_flag *flag)
+{
+	int	i;
+
+	i = 0;
+	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+		return (NULL);
+	buf[len] = '\0';
+	//according to flag value, insert ' ' or '0', need to check mac os.
+	while (buf[i] != '\0')
+		buf[i++] = '0';
+	return (buf);
+}
+
+char	*ft_join_buf(char *buf_1, char *buf_2)
+{
+	char	*ret;
+	int	len;
+
+	len = ft_str_len(buf_1) + ft_str_len(buf_2);
+	if ((ret = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+		return (NULL);
+	
+}
+
+char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 {
 	int	diff;
+	char	*width_buf;
 
-	diff = 0;
-	if (flag->dot < flag->width)
+	diff = flag->width - ((ft_num_len(num) > flag->dot) ? ft_num_len(num) : flag->dot);
+	if (diff > 0 )
 	{
-		diff = flag->dot 
+		//here *********************************************************8
+		if (ft_create_width_buf(width_buf, diff, flag) == NULL)
+			return (NULL);
+		buf = flag->minus == 1 ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
+		if (buf == NULL)
+			return (NULL);
 	}
+	return (buf);
 }
-*/
+
 int	ft_print_int_num(unsigned long long num, t_flag *flag)
 {
 	int 	count;
@@ -302,7 +334,7 @@ int	ft_print_int_num(unsigned long long num, t_flag *flag)
 	count = 0;
 	if ((buf = ft_init_buf(num, flag)) == NULL)
 		return (NULL);
-//	ft_put_width(buf, num, flag);
+	buf = ft_put_width(buf, num, flag);
 	ft_put_str_num(buf);
 	return (count);
 }
