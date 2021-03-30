@@ -32,11 +32,7 @@ int	ft_put_str(char *str, t_flag *flag)
 	i = 0;
 	len = flag->dot > 0 ? flag->dot : 0;
 	if (str == NULL)
-	{
-		while ("(null)"[i] != '\0' && i < len)
-			write(1, &"(null)"[i++], 1);
-		return (i);
-	}
+		str = "(null)";
 	if (flag->dot > -1)
 	{
 		while (str[i] != '\0' && i < len)
