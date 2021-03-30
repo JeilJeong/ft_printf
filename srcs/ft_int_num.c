@@ -80,11 +80,11 @@ int		ft_print_int_num(unsigned long long num, t_flag *flag)
 		return (0);
 	if ((flag->type == 'd' || flag->type == 'i') && flag->zero == 0)
 		buf = ft_put_neg_mark(buf, num);
+	if (flag->type == 'p')
+		buf = ft_put_hex_prefix(buf);
 	buf = ft_put_width(buf, num, flag);
 	if ((flag->type == 'd' || flag->type == 'i') && flag->zero == 1)
 		buf = ft_put_neg_mark(buf, num);
-	if (flag->type == 'p')
-		buf = ft_put_hex_prefix(buf);
 	count += ft_put_str_num(buf);
 	free(buf);
 	return (count);
