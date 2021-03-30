@@ -37,7 +37,7 @@ int	ft_put_str(char *str, t_flag *flag)
 			write(1, &"(null)"[i++], 1);
 		return (i);
 	}
-	if (flag->dot != -1)
+	if (flag->dot > -1)
 	{
 		while (str[i] != '\0' && i < len)
 			ft_putchar(str[i++], 1);

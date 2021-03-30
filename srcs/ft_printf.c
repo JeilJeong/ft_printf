@@ -12,7 +12,19 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_print_arg(va_list ap, t_flag *flag)
+void	ft_flag_priority(t_flag *flag)
+{
+	if (flag->type != '%' && (flag->minus == 1 || flag->dot > -1))
+	{
+//		if (!((flag->type == 'c' || flag->type == 's')
+//				&& flag->minus == 0 && flag->dot != -1))
+		flag->zero = 0;
+	}
+	else if (flag->type == '%' && flag->minus == 1)
+		flag->zero = 0;
+}
+
+int		ft_print_arg(va_list ap, t_flag *flag)
 {
 	int	count;
 
@@ -34,7 +46,7 @@ int	ft_print_arg(va_list ap, t_flag *flag)
 	return (count);
 }
 
-int	ft_parse_format(va_list ap, const char *format)
+int		ft_parse_format(va_list ap, const char *format)
 {
 	int		i;
 	int		count;
@@ -59,7 +71,7 @@ int	ft_parse_format(va_list ap, const char *format)
 	return (count);
 }
 
-int	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	int		count;
 	va_list	ap;

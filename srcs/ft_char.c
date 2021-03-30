@@ -12,19 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_flag_priority(t_flag *flag)
-{
-	if (flag->type != '%' && (flag->minus == 1 || flag->dot > -1))
-	{
-//		if (!((flag->type == 'c' || flag->type == 's')
-//				&& flag->minus == 0 && flag->dot != -1))
-		flag->zero = 0;
-	}
-	else if (flag->type == '%' && flag->minus == 1)
-		flag->zero = 0;
-}
-
-int		ft_print_width(t_flag *flag, int len)
+int	ft_print_width(t_flag *flag, int len)
 {
 	int	count;
 
@@ -41,7 +29,7 @@ int		ft_print_width(t_flag *flag, int len)
 	return (count);
 }
 
-int		ft_print_char(int c, t_flag *flag)
+int	ft_print_char(int c, t_flag *flag)
 {
 	int	count;
 	int	len;
