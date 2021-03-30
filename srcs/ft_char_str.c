@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:48:13 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 21:40:31 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 21:43:05 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_put_str(char *str, t_flag *flag)
 	if (str == NULL)
 	{
 		while ("(null)"[i] != '\0' && i < len)
-			write(1, &"(null)"[i], 1);
+			write(1, &"(null)"[i++], 1);
 		return (i);
 	}
 	if (flag->dot != -1)
