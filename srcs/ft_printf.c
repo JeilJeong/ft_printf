@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 14:57:52 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:02:07 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,13 +339,14 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ? ft_num_len(num, flag) : flag->dot);
 	if (diff > 0 )
 	{
-		//here *********************************************************8
 		if ((width_buf = ft_create_width_buf(diff, flag)) == NULL)
 			return (NULL);
 		ret = (flag->minus == 1) ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
 		if (ret == NULL)
 			return (NULL);
 	}
+	else
+		ret = buf;
 	return (ret);
 }
 
