@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 16:46:40 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 17:06:12 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,8 @@ char	*ft_init_buf(unsigned long long num, t_flag *flag)
 
 	num_len = ft_num_len(num, flag);
 	buf_len = (num_len > flag->dot) ? num_len : flag->dot;
+	if (num == 0 && flag->dot == 0)
+		buf_len == 0;
 	if ((buf = (char *)malloc(sizeof(char) * (buf_len + 1))) == NULL)
 		return (NULL);
 	buf[buf_len] = '\0';
@@ -268,11 +270,9 @@ char	*ft_init_buf(unsigned long long num, t_flag *flag)
 		buf[i++] = '\0';
 	i = 0;
 	while (num_len + i < buf_len)
-	{
-		buf[i] = '0';
-		i++;
-	}
-	ft_put_num(buf, num, flag);
+		buf[i++] = '0';
+	if (!(num == 0 && flag->dot == 0))
+		ft_put_num(buf, num, flag);
 	return (buf);
 }
 
@@ -344,12 +344,16 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	char	*width_buf;
 	char	*ret;
 
-	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ? ft_num_len(num, flag) : flag->dot);
+	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ?\
+			ft_num_len(num, flag) : flag->dot);
+	if (num == 0 && flag->dot == 0)
+		diff == flag->width;
 	if (diff > 0 )
 	{
 		if ((width_buf = ft_create_width_buf(diff, num, flag)) == NULL)
 			return (NULL);
-		ret = (flag->minus == 1) ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
+		ret = (flag->minus == 1) ? ft_join_buf(buf, width_buf) :\
+		      ft_join_buf(width_buf, buf);
 		if (ret == NULL)
 			return (NULL);
 	}
