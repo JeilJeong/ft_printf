@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:02:18 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 15:51:20 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:53:42 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main(void)
 	char		*s = "ab" ;
 	int		d = 12;
 	int		i = 3;
-	int		x = 15;
-	int		X = 15;
+	int		x = -15;
+	int		X = -47;
 	char		*p = &c;
 	unsigned int	u = 3;
 
-	ft_x_test(x);
+	ft_p_test(p);
 }
