@@ -53,7 +53,8 @@ char				*ft_put_neg_mark(char *buf, unsigned long long num);
 int					ft_print_int_num(unsigned long long num, t_flag *flag);
 char				*ft_join_buf(char *buf_1, char *buf_2);
 int					ft_num_len(unsigned long long num, t_flag *flag);
-void				ft_put_num(char *buf, int len, unsigned long long num, t_flag *flag);
+void				ft_put_num(char *buf, int len, \
+unsigned long long num, t_flag *flag);
 char				*ft_init_buf(unsigned long long num, t_flag *flag);
 int					ft_put_str_num(char *str);
 char				*ft_create_width_buf(int len, \

@@ -35,30 +35,18 @@ void	ft_put_num(char *buf, int len, unsigned long long num, t_flag *flag)
 
 	base = (unsigned long long)ft_num_base(flag);
 	num = ft_sign_change(num, flag);
+	i = 1;
 	while (num != 0)
 	{
 		if (base == 10)
-			buf[i] = (num % base) + '0';
+			buf[len - i] = (num % base) + '0';
 		else if (flag->type == 'x' || flag->type == 'p')
-			buf[i] = "0123456789abcdef"[num % base];
+			buf[len - i] = "0123456789abcdef"[num % base];
 		else if (flag->type == 'X')
-			buf[i] = "0123456789ABCDEF"[num % base];
+			buf[len - i] = "0123456789ABCDEF"[num % base];
 		num /= base;
 		i++;
 	}
-/*
-	if (num >= base)
-		ft_put_num(buf, num / base, flag);
-	i = 0;
-	while (buf[i] != '\0')
-		i++;
-	if (base == 10)
-		buf[i] = (num % base) + '0';
-	else if (flag->type == 'x' || flag->type == 'p')
-		buf[i] = "0123456789abcdef"[num % base];
-	else if (flag->type == 'X')
-		buf[i] = "0123456789ABCDEF"[num % base];
-*/
 }
 
 char	*ft_init_buf(unsigned long long num, t_flag *flag)
