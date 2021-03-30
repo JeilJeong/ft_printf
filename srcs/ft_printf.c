@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/28 19:22:06 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 14:57:52 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,17 +283,23 @@ int	ft_put_str_num(char *str)
 	return (i);
 }
 
-char	*ft_create_width_buf(char *buf, int len, t_flag *flag)
+char	*ft_create_width_buf(int len, t_flag *flag)
 {
 	int	i;
+	char	*buf;
 
 	i = 0;
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	buf[len] = '\0';
-	//according to flag value, insert ' ' or '0', need to check mac os.
-	while (buf[i] != '\0')
-		buf[i++] = '0';
+	while (i < len)
+	{
+		if (flag->zero)
+			buf[i] = '0';
+		else
+			buf[i] = ' ';
+		i++;
+	}
 	return (buf);
 }
 
@@ -301,29 +307,46 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 {
 	char	*ret;
 	int	len;
+	int	i;
+	int	j;
 
 	len = ft_str_len(buf_1) + ft_str_len(buf_2);
 	if ((ret = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	
+	ret[len] = '\0';
+	i = 0;
+	j = 0;
+	while (buf_1[i] != '\0')
+	{
+		ret[j++] = buf_1[i];
+		i++;
+	}
+	i = 0;
+	while (buf_2[i] != '\0')
+	{
+		ret[j++] = buf_2[i];
+		i++;
+	}
+	return (ret);
 }
 
 char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 {
 	int	diff;
 	char	*width_buf;
+	char	*ret;
 
-	diff = flag->width - ((ft_num_len(num) > flag->dot) ? ft_num_len(num) : flag->dot);
+	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ? ft_num_len(num, flag) : flag->dot);
 	if (diff > 0 )
 	{
 		//here *********************************************************8
-		if (ft_create_width_buf(width_buf, diff, flag) == NULL)
+		if ((width_buf = ft_create_width_buf(diff, flag)) == NULL)
 			return (NULL);
-		buf = flag->minus == 1 ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
-		if (buf == NULL)
+		ret = (flag->minus == 1) ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
+		if (ret == NULL)
 			return (NULL);
 	}
-	return (buf);
+	return (ret);
 }
 
 int	ft_print_int_num(unsigned long long num, t_flag *flag)
