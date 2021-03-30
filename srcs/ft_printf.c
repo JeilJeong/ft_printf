@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 15:52:25 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:29:28 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,16 +322,12 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 	i = 0;
 	j = 0;
 	while (buf_1[i] != '\0')
-	{
-		ret[j++] = buf_1[i];
-		i++;
-	}
+		ret[j++] = buf_1[i++];
 	i = 0;
 	while (buf_2[i] != '\0')
-	{
-		ret[j++] = buf_2[i];
-		i++;
-	}
+		ret[j++] = buf_2[i++];
+	free(buf_1);
+	free(buf_2);
 	return (ret);
 }
 
@@ -355,6 +351,38 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	return (ret);
 }
 
+char	*ft_put_hex_prefix(char *buf)
+{
+	char	*prefix;
+	char	*ret;
+
+	if ((prefix = (char *)malloc(sizeof(char) * 3)) == NULL)
+		return (0);
+	prefix[0] = '0';
+	prefix[1] = 'x';
+	prefix[2] = '\0';
+	ret = ft_join_buf(prefix, buf);
+	return (ret);
+}
+
+char	*ft_put_neg_mark(char *buf, unsigned long long num)
+{
+	char	*prefix;
+	char	*ret;
+
+	if ((num = (int)num))
+	{
+		if ((prefix = (char *)malloc(sizeof(char) * 2)) == NULL)
+			return (0);
+		prefix[0] = '-';
+		prefix[1] = '\0';
+		ret = ft_join_buf(prefix, buf);
+	}
+	else
+		ret = buf;
+	return (ret);
+}
+
 int	ft_print_int_num(unsigned long long num, t_flag *flag)
 {
 	int 	count;
@@ -363,8 +391,13 @@ int	ft_print_int_num(unsigned long long num, t_flag *flag)
 	count = 0;
 	if ((buf = ft_init_buf(num, flag)) == NULL)
 		return (NULL);
+	if (flag->type == 'd' || flag->type == 'i')
+		buf = ft_put_neg_mark(buf, num);
 	buf = ft_put_width(buf, num, flag);
+	if (flag->type == 'p')
+		buf = ft_put_hex_prefix(buf);
 	count += ft_put_str_num(buf);
+	free(buf);
 	return (count);
 }
 
