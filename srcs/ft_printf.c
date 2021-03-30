@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 16:34:57 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:37:09 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,10 +292,11 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 {
 	int	i;
 	char	*buf;
+	int	n;
 
 	i = 0;
-	if ((flag->type == 'd' || flag->type == 'i') && (int)num < 0)
-		len--;
+	if ((flag->type == 'd' || flag->type == 'i') && ((n = (int)num) < 0))
+		len -= 1;
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	buf[len] = '\0';
