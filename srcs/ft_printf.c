@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 16:29:28 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:34:57 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,12 +288,14 @@ int	ft_put_str_num(char *str)
 	return (i);
 }
 
-char	*ft_create_width_buf(int len, t_flag *flag)
+char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 {
 	int	i;
 	char	*buf;
 
 	i = 0;
+	if ((flag->type == 'd' || flag->type == 'i') && (int)num < 0)
+		len--;
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	buf[len] = '\0';
@@ -340,7 +342,7 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ? ft_num_len(num, flag) : flag->dot);
 	if (diff > 0 )
 	{
-		if ((width_buf = ft_create_width_buf(diff, flag)) == NULL)
+		if ((width_buf = ft_create_width_buf(diff, num, flag)) == NULL)
 			return (NULL);
 		ret = (flag->minus == 1) ? ft_join_buf(buf, width_buf) : ft_join_buf(width_buf, buf);
 		if (ret == NULL)
