@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 15:35:03 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:38:55 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void	ft_put_num(char *buf, unsigned long long num, t_flag *flag)
 	base = ft_num_base(flag);
 	num = ft_sign_change(num, flag);
 	if (num >= base)
-		ft_put_num(buf, num / 10, flag);
+		ft_put_num(buf, num / base, flag);
 	i = 0;
 	while (buf[i] != '\0')
 		i++;
