@@ -50,7 +50,7 @@ int	ft_parse_format(va_list ap, const char *format)
 			while (format[++i] != '\0' && !ft_is_type(format[i]))
 				ft_check_flag(ap, &flag, format, i);
 			flag.type = format[i++];
-//			ft_flag_priority(&flag);
+			ft_flag_priority(&flag);
 			count += ft_print_arg(ap, &flag);
 		}
 		else
