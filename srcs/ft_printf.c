@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 15:02:07 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:35:03 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,7 @@ int	ft_print_int_num(unsigned long long num, t_flag *flag)
 	if ((buf = ft_init_buf(num, flag)) == NULL)
 		return (NULL);
 	buf = ft_put_width(buf, num, flag);
-	ft_put_str_num(buf);
+	count += ft_put_str_num(buf);
 	return (count);
 }
 
