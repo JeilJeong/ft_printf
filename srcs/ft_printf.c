@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 17:55:29 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 22:15:03 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_parse_format(va_list ap, const char *format)
 			while (format[++i] != '\0' && !ft_is_type(format[i]))
 				ft_check_flag(ap, &flag, format, i);
 			flag.type = format[i++];
-			ft_flag_priority(&flag);
+//			ft_flag_priority(&flag);
 			count += ft_print_arg(ap, &flag);
 		}
 		else
