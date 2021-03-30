@@ -54,7 +54,7 @@ int	ft_print_width_str(t_flag *flag, int len)
 	int	width;
 
 	i = 0;
-	if (flag->dot == -1)
+	if (flag->dot < 0)
 		width = flag->width - len;
 	else
 		width = flag->width - (flag->dot < len ? flag->dot : len);
