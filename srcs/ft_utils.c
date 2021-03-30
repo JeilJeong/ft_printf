@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/30 17:49:01 by jejeong           #+#    #+#             */
+/*   Updated: 2021/03/30 17:49:04 by jejeong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_utils.h"
 
-int	ft_putchar(char c, int fd)
+int		ft_putchar(char c, int fd)
 {
 	if (fd < 0)
 		return (-1);
@@ -23,4 +35,11 @@ char	*ft_strchr(const char *str, int c)
 	if (!c)
 		return ((char *)&str[i]);
 	return (NULL);
+}
+
+int		ft_is_num(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

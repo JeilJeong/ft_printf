@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_main.h                                          :+:      :+:    :+:   */
+/*   ft_int_num_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 15:33:01 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/19 15:33:03 by jejeong          ###   ########.fr       */
+/*   Created: 2021/03/30 17:48:54 by jejeong           #+#    #+#             */
+/*   Updated: 2021/03/30 17:48:55 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAIN_H
-# define FT_MAIN_H
+#include "../includes/ft_printf.h"
 
-# include <stdio.h>
-# include "ft_printf.h"
+int					ft_num_base(t_flag *flag)
+{
+	char	type;
 
-#endif
+	type = flag->type;
+	if (type == 'x' || type == 'X' || type == 'p')
+		return (16);
+	return (10);
+}
+
+unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag)
+{
+	int	n;
+
+	n = (int)num;
+	if ((flag->type == 'd' || flag->type == 'i') && (n < 0))
+		num *= -1;
+	return (num);
+}

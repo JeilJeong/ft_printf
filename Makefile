@@ -1,14 +1,14 @@
 CC=gcc
-CFLAGS=-Wall -Wextra
+CFLAGS=-Wall -Wextra -Werror
 SRC=$(wildcard srcs/*.c)
 OBJ=$(SRC:.c=.o)
 HEADER=./includes
-TARGET=ft_main
+TARGET=libftprintf.a
 
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -I $(HEADER) -o $@ $^
+	ar crs $(TARGET) $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
@@ -20,3 +20,5 @@ fclean: clean
 	rm -rf $(TARGET)
 
 re: fclean all
+
+.PHONY: all clean fclean re
