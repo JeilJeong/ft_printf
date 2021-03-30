@@ -14,7 +14,7 @@
 
 void	ft_flag_priority(t_flag *flag)
 {
-	if (flag->type != '%' && (flag->minus == 1 || flag->dot != -1))
+	if (flag->type != '%' && (flag->minus == 1 || flag->dot > -1))
 	{
 //		if (!((flag->type == 'c' || flag->type == 's')
 //				&& flag->minus == 0 && flag->dot != -1))
