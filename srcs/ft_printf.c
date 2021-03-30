@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 15:38:55 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:47:37 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,12 @@ void	ft_put_num(char *buf, unsigned long long num, t_flag *flag)
 	i = 0;
 	while (buf[i] != '\0')
 		i++;
-	buf[i] = (num % base) + '0';
+	if (base == 10)
+		buf[i] = (num % base) + '0';
+	else if (flag->type == 'x' || flag->type == 'p')
+		buf[i] = "0123456789abcde"[num % base];
+	else if (flag->type == 'X')
+		buf[i] = "0123456789ABCDE"[num % base];
 }
 
 char	*ft_init_buf(unsigned long long num, t_flag *flag)
