@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 16:37:09 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:46:40 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,10 @@ int	ft_num_base(t_flag *flag)
 
 unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag)
 {
-	if ((flag->type == 'd' || flag->type == 'i') && (int)num < 0)
+	int	n;
+
+	n = (int)num;
+	if ((flag->type == 'd' || flag->type == 'i') && (n < 0))
 		num *= -1;
 	return (num);
 }
@@ -295,7 +298,8 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 	int	n;
 
 	i = 0;
-	if ((flag->type == 'd' || flag->type == 'i') && ((n = (int)num) < 0))
+	n = (int)num;
+	if ((flag->type == 'd' || flag->type == 'i') && (n < 0))
 		len -= 1;
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
@@ -372,8 +376,10 @@ char	*ft_put_neg_mark(char *buf, unsigned long long num)
 {
 	char	*prefix;
 	char	*ret;
+	int	n;
 
-	if ((num = (int)num))
+	n = (int)num;
+	if (n < 0)
 	{
 		if ((prefix = (char *)malloc(sizeof(char) * 2)) == NULL)
 			return (0);
