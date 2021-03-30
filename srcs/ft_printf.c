@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 17:06:12 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/30 17:13:49 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -347,7 +347,7 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	diff = flag->width - ((ft_num_len(num, flag) > flag->dot) ?\
 			ft_num_len(num, flag) : flag->dot);
 	if (num == 0 && flag->dot == 0)
-		diff == flag->width;
+		diff = flag->width;
 	if (diff > 0 )
 	{
 		if ((width_buf = ft_create_width_buf(diff, num, flag)) == NULL)
