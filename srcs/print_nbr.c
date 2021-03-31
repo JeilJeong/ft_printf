@@ -92,6 +92,7 @@ int			print_nbr(unsigned long long nbr, t_flag *flag)
 	int					ret;
 	unsigned long long	base;
 
+	base = 10;
 	if (flag->type == 'x' || flag->type == 'X' || flag->type == 'p')
 		base = 16;
 	buf_len = put_prec_str(nbr, flag, &buf, base);

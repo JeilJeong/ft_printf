@@ -32,7 +32,7 @@ unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag)
 	return (num);
 }
 
-int			put_width_str(char **buf, t_flag *flag)
+int					put_width_str(char **buf, t_flag *flag)
 {
 	char	*width;
 	int		i;
