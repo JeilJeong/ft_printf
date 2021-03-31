@@ -99,6 +99,7 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	ft_memset(buf, 0, sizeof(buf));
+	buf[len] = '\0';
 	while (i < len)
 	{
 		if (flag->zero)
