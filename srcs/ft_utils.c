@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:49:01 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 17:49:04 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/31 20:21:22 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,15 @@ void	*ft_memset(void *s, int c, size_t n)
 		i++;
 	}
 	return (s);
+}
+
+char	*ft_baseset(char type)
+{
+	if (type == 'u' || type == 'd' || type == 'i')
+		return ("0123456789");
+	else if (type == 'x' || type == 'p')
+		return ("0123456789abcdef");
+	else if (type == 'X')
+		return ("0123456789ABCDEF");
+	return (0);
 }

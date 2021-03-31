@@ -58,5 +58,14 @@ char				*ft_init_buf(unsigned long long num, t_flag *flag);
 int					ft_put_str_num(char *str);
 char				*ft_create_width_buf(int len, \
 unsigned long long	num, t_flag *flag);
+int					put_pointer_prefix(char **buf);
+int					put_minus(t_flag *flag, char **buf, \
+unsigned long long num);
+int					put_minus2(int buf_len, t_flag *flag, \
+char **buf, unsigned long long num);
+int					put_prec_str(unsigned long long nbr, \
+t_flag *flag, char **buf, unsigned long long base);
+int					print_nbr(unsigned long long nbr, \
+t_flag *flag);
 
 #endif

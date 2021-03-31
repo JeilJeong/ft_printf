@@ -19,5 +19,6 @@ int		ft_putchar(char c, int fd);
 char	*ft_strchr(const char *str, int c);
 int		ft_is_num(char c);
 void	*ft_memset(void *s, int c, size_t n);
+char	*ft_baseset(char type);
 
 #endif
