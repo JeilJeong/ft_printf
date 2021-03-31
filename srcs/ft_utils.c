@@ -43,3 +43,16 @@ int		ft_is_num(char c)
 		return (1);
 	return (0);
 }
+
+void	*ft_memeset(void *s, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n && s != NULL)
+	{
+		*((unsigned char *)s + i) = (unsigned char)c;
+		i++;
+	}
+	return (s);
+}

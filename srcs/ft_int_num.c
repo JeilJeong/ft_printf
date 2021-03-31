@@ -103,7 +103,7 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 	len = ft_str_len(buf_1) + ft_str_len(buf_2);
 	if ((ret = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	ret[len] = '\0';
+	ft_memset(ret, 0, sizeof(ret));
 	i = 0;
 	j = 0;
 	while (buf_1[i] != '\0')
