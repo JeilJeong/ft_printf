@@ -28,7 +28,7 @@ int		ft_num_len(unsigned long long num, t_flag *flag)
 	return (i);
 }
 
-void	ft_put_num(char *buf, unsigned long long num, t_flag *flag)
+void	ft_put_num(char *buf, int len, unsigned long long num, t_flag *flag)
 {
 	unsigned long long	base;
 	int					i;
@@ -36,9 +36,9 @@ void	ft_put_num(char *buf, unsigned long long num, t_flag *flag)
 	base = (unsigned long long)ft_num_base(flag);
 	num = ft_sign_change(num, flag);
 	if (num >= base)
-		ft_put_num(buf, num / base, flag);
+		ft_put_num(buf, len, num / base, flag);
 	i = 0;
-	while (buf[i] != '\0')
+	while (buf[i] != '\0' && i < len)
 		i++;
 	if (base == 10)
 		buf[i] = (num % base) + '0';
@@ -62,11 +62,12 @@ char	*ft_init_buf(unsigned long long num, t_flag *flag)
 	if ((buf = (char *)malloc(sizeof(char) * (buf_len + 1))) == NULL)
 		return (NULL);
 	ft_memset(buf, 0, sizeof(buf));
+	buf[buf_len] = '\0';
 	i = 0;
 	while (num_len + i < buf_len)
 		buf[i++] = '0';
 	if (!(num == 0 && flag->dot == 0))
-		ft_put_num(buf, num, flag);
+		ft_put_num(buf, buf_len, num, flag);
 	return (buf);
 }
 
