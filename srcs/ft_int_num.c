@@ -22,7 +22,7 @@ char	*ft_put_width(char *buf, unsigned long long num, t_flag *flag)
 	num_len = ft_num_len(num, flag);
 	diff = flag->width - ((num_len > flag->dot) ? num_len : flag->dot);
 	if (flag->type == 'p')
-		diff += 2;
+		diff -= 2;
 	if (num == 0 && flag->dot == 0)
 		diff = flag->width;
 	if (diff > 0)
