@@ -76,8 +76,6 @@ int		ft_put_str_num(char *str)
 	int	i;
 
 	i = 0;
-	if (str == NULL)
-		return (0);
 	while (str[i] != '\0')
 	{
 		write(1, &str[i], 1);
@@ -99,7 +97,6 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 	if ((buf = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	ft_memset(buf, 0, sizeof(buf));
-	buf[len] = '\0';
 	while (i < len)
 	{
 		if (flag->zero)
@@ -108,5 +105,6 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 			buf[i] = ' ';
 		i++;
 	}
+	buf[i] == '\0';
 	return (buf);
 }

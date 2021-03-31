@@ -113,5 +113,6 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 		ret[j++] = buf_2[i++];
 	free(buf_1);
 	free(buf_2);
+	ret[j] = '\0';
 	return (ret);
 }
