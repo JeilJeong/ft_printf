@@ -30,12 +30,12 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 	else if (flag->type == 's')
 		count = ft_print_str(va_arg(ap, char *), flag);
 	else if (flag->type == 'p')
-		count = ft_print_nbr(va_arg(ap, unsigned long long), flag);
+		count = print_nbr(va_arg(ap, unsigned long long), flag);
 	else if (flag->type == 'd' || flag->type == 'i')
-		count = ft_print_nbr(va_arg(ap, int), flag);
+		count = print_nbr(va_arg(ap, int), flag);
 	else if (flag->type == 'u' || flag->type == 'x'
 			|| flag->type == 'X')
-		count = ft_print_nbr(va_arg(ap, unsigned int), flag);
+		count = print_nbr(va_arg(ap, unsigned int), flag);
 	else if (flag->type == '%')
 		count = ft_print_char('%', flag);
 	return (count);
