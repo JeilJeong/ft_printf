@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:48:46 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/30 18:40:05 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/03/31 22:24:20 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ char	*ft_create_width_buf(int len, unsigned long long num, t_flag *flag)
 			buf[i] = ' ';
 		i++;
 	}
-	buf[i] == '\0';
+	buf[i] = '\0';
 	return (buf);
 }
