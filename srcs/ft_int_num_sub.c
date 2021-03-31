@@ -17,10 +17,11 @@ int		ft_num_len(unsigned long long num, t_flag *flag)
 	int					i;
 	unsigned long long	base;
 
-	i = 1;
-	base = (unsigned long long)ft_num_base(flag);
-	num = ft_sign_change(num, flag);
-	while (num >= base)
+	base = ft_num_base(flag);
+	if (num == 0 && flag->dot != 0)
+		return (1);
+	i = 0;
+	while (num)
 	{
 		i++;
 		num /= base;
