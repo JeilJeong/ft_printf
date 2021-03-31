@@ -67,5 +67,7 @@ int					put_prec_str(unsigned long long nbr, \
 t_flag *flag, char **buf, unsigned long long base);
 int					print_nbr(unsigned long long nbr, \
 t_flag *flag);
+char				*ft_strjoin(char *s1, char *s2, int free_target);
+int					put_width_str(char **buf, t_flag *flag);
 
 #endif

@@ -31,3 +31,25 @@ unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag)
 		num *= -1;
 	return (num);
 }
+
+int			put_width_str(char **buf, t_flag *flag)
+{
+	char	*width;
+	int		i;
+
+	if (flag->width <= (int)ft_str_len(*buf))
+		return ((int)ft_str_len(*buf));
+	width = (char *)malloc(sizeof(char) * (flag->width - ft_str_len(*buf) + 1));
+	i = 0;
+	while (i < flag->width - ft_str_len(*buf))
+	{
+		width[i] = (flag->zero == 1) ? '0' : ' ';
+		i++;
+	}
+	width[i] = '\0';
+	if (flag->minus == 0)
+		*buf = ft_strjoin(width, *buf, 3);
+	else
+		*buf = ft_strjoin(*buf, width, 3);
+	return (flag->width);
+}

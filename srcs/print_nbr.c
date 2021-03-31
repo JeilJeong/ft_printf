@@ -15,7 +15,7 @@
 int			put_pointer_prefix(char **buf)
 {
 	*buf = ft_strjoin("0x", *buf, 2);
-	return (ft_strlen(*buf));
+	return (ft_str_len(*buf));
 }
 
 int			put_minus(t_flag *flag, char **buf, unsigned long long num)
@@ -62,7 +62,7 @@ t_flag *flag, char **buf, unsigned long long base)
 	int		ret;
 	int		i;
 
-	buf_len = ft_nbrlen(nbr, flag);
+	buf_len = ft_num_len(nbr, flag);
 	ret = (flag->dot > buf_len) ? flag->dot : buf_len;
 	if (!(*buf = (char *)malloc(sizeof(char) * ret + 1)))
 		return (0);
@@ -100,7 +100,7 @@ int			print_nbr(unsigned long long nbr, t_flag *flag)
 		buf_len = put_pointer_prefix(&buf);
 	ret = put_width_str(&buf, flag);
 	ret += put_minus2(buf_len, flag, &buf, nbr);
-	ft_putstr(buf);
+	ft_put_str_num(buf);
 	free(buf);
 	return (ret);
 }
