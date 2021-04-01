@@ -47,7 +47,6 @@ t_flag *flag, char **buf, int len);
 char				*ft_init_buf(unsigned long long num, t_flag *flag);
 void				ft_put_width_num(char **buf, t_flag *flag);
 int					ft_print_int(unsigned long long num, t_flag *flag);
-char				*ft_strjoin(char *s1, char *s2, int free_target);
 void				ft_flag_priority(t_flag *flag);
 int					ft_print_arg(va_list ap, t_flag *flag);
 int					ft_parse_format(va_list ap, const char *format);
