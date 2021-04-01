@@ -61,7 +61,7 @@ unsigned long long num, t_flag *flag)
 	n = (int)num;
 	if (n < 0)
 	{
-		if (flag->zero == 1 && ft_str_len_num(buf) < flag->width)
+		if (flag->zero == 1 && (ft_num_len(num, flag) <= ft_str_len_num(buf)))
 			buf[0] = '-';
 		else
 		{
