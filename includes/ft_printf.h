@@ -38,7 +38,8 @@ const char *format, int i);
 int					ft_num_base(t_flag *flag);
 unsigned long long	ft_sign_change(unsigned long long num, t_flag *flag);
 int					ft_num_len(unsigned long long num, t_flag *flag);
-char				*ft_put_neg_mark(char *buf, unsigned long long num);
+char				*ft_put_neg_mark(char *buf, \
+unsigned long long num, t_flag *flag);
 char				*ft_put_hex_prefix(char *buf);
 char				*ft_join_buf(char *buf_1, char *buf_2);
 void				ft_put_num(unsigned long long num, \

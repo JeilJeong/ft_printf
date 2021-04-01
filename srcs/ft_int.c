@@ -15,9 +15,9 @@
 char	*ft_join_buf(char *buf_1, char *buf_2)
 {
 	char	*ret;
-	int	ret_len;
-	int 	i;
-	int	j;
+	int		ret_len;
+	int		i;
+	int		j;
 
 	ret_len = ft_str_len_num(buf_1) + ft_str_len_num(buf_2);
 	if ((ret = (char *)malloc(sizeof(char) * (ret_len + 1))) == NULL)
@@ -37,8 +37,8 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 
 void	ft_put_num(unsigned long long num, t_flag *flag, char **buf, int len)
 {
-	int	i;
-	int	base;
+	int		i;
+	int		base;
 	char	*ptr;
 	char	type;
 
@@ -49,7 +49,7 @@ void	ft_put_num(unsigned long long num, t_flag *flag, char **buf, int len)
 	type = flag->type;
 	while (num > 0)
 	{
-		if (type == 'd' || type == 'i'|| type == 'u')
+		if (type == 'd' || type == 'i' || type == 'u')
 			ptr[len - i] = "0123456789"[num % base];
 		else if (type == 'p' || type == 'x')
 			ptr[len - i] = "0123456789abcdef"[num % base];
@@ -84,12 +84,11 @@ char	*ft_init_buf(unsigned long long num, t_flag *flag)
 	return (ret);
 }
 
-
 void	ft_put_width_num(char **buf, t_flag *flag)
 {
 	char	*ret;
-	int	i;
-	int	ret_len;
+	int		i;
+	int		ret_len;
 
 	i = 0;
 	ret_len = flag->width - ft_str_len_num(*buf);
@@ -106,7 +105,7 @@ void	ft_put_width_num(char **buf, t_flag *flag)
 		}
 		ret[i] = '\0';
 		*buf = (flag->minus == 0) ? ft_join_buf(ret, *buf) : \
-		       ft_join_buf(*buf, ret);
+		ft_join_buf(*buf, ret);
 	}
 }
 
@@ -118,12 +117,12 @@ int		ft_print_int(unsigned long long num, t_flag *flag)
 	if ((buf = ft_init_buf(num, flag)) == NULL)
 		return (0);
 	if ((flag->type == 'd' || flag->type == 'i') && flag->zero == 0)
-		buf = ft_put_neg_mark(buf, num);
+		buf = ft_put_neg_mark(buf, num, flag);
 	if (flag->type == 'p')
 		buf = ft_put_hex_prefix(buf);
 	ft_put_width_num(&buf, flag);
 	if ((flag->type == 'd' || flag->type == 'i') && flag->zero == 1)
-		buf = ft_put_neg_mark(buf, num);
+		buf = ft_put_neg_mark(buf, num, flag);
 	ft_put_str_num(buf);
 	len = ft_str_len_num(buf);
 	free(buf);
