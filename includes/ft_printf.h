@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "ft_utils.h"
 
 typedef struct		s_flag
 {
@@ -55,5 +54,10 @@ int					ft_str_len(char *str);
 int					ft_put_str(char *str, t_flag *flag);
 int					ft_print_width_str(t_flag *flag, int len);
 int					ft_print_str(char *str, t_flag *flag);
+int					ft_putchar(char c, int fd);
+char				*ft_strchr(const char *str, int c);
+int					ft_is_num(char c);
+int					ft_str_len_num(char *str);
+int					ft_put_str_num(char *str);
 
 #endif
