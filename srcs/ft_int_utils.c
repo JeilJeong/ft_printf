@@ -57,6 +57,7 @@ unsigned long long num, t_flag *flag)
 	char	*ret;
 	int		n;
 
+	ret = buf;
 	n = (int)num;
 	if (n < 0)
 	{
@@ -71,8 +72,6 @@ unsigned long long num, t_flag *flag)
 			ret = ft_join_buf(prefix, buf);
 		}
 	}
-	else
-		ret = buf;
 	return (ret);
 }
 
