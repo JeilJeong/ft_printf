@@ -18,7 +18,8 @@
 int		ft_putchar(char c, int fd);
 char	*ft_strchr(const char *str, int c);
 int		ft_is_num(char c);
-void	*ft_memset(void *s, int c, size_t n);
-char	*ft_baseset(char type);
+int	ft_str_len(char *str);
+int		ft_put_str_num(char *str);
+
 
 #endif

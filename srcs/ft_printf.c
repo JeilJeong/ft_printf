@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/03/31 01:06:28 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/04/01 12:29:03 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 	else if (flag->type == 's')
 		count = ft_print_str(va_arg(ap, char *), flag);
 	else if (flag->type == 'p')
-		count = print_nbr(va_arg(ap, unsigned long long), flag);
+		count = ft_print_int(va_arg(ap, unsigned long long), flag);
 	else if (flag->type == 'd' || flag->type == 'i')
-		count = print_nbr(va_arg(ap, int), flag);
+		count = ft_print_int(va_arg(ap, int), flag);
 	else if (flag->type == 'u' || flag->type == 'x'
 			|| flag->type == 'X')
-		count = print_nbr(va_arg(ap, unsigned int), flag);
+		count = ft_print_int(va_arg(ap, unsigned int), flag);
 	else if (flag->type == '%')
 		count = ft_print_char('%', flag);
 	return (count);

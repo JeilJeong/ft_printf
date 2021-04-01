@@ -44,26 +44,25 @@ int		ft_is_num(char c)
 	return (0);
 }
 
-void	*ft_memset(void *s, int c, size_t n)
+int		ft_str_len(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i < n && s != NULL)
-	{
-		*((unsigned char *)s + i) = (unsigned char)c;
+	while (str[i])
 		i++;
-	}
-	return (s);
+	return (i);
 }
 
-char	*ft_baseset(char type)
+int		ft_put_str_num(char *str)
 {
-	if (type == 'u' || type == 'd' || type == 'i')
-		return ("0123456789");
-	else if (type == 'x' || type == 'p')
-		return ("0123456789abcdef");
-	else if (type == 'X')
-		return ("0123456789ABCDEF");
-	return (0);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
