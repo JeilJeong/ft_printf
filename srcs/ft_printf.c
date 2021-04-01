@@ -41,14 +41,14 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 	return (count);
 }
 
-int		ft_segfault(t_flag *flag, const char *format, int *i, int *j, int *mark)
+int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
 {
 	if ((flag->type = format[*i]) == '\0')
 	{
-		*mark = 1;
-		*i = *j;
+		*i = 0;
 		return (0);
 	}
+	*mark = 0;
 	*i = *i + 1;
 	return (1);
 }
@@ -56,7 +56,6 @@ int		ft_segfault(t_flag *flag, const char *format, int *i, int *j, int *mark)
 int		ft_parse_format(va_list ap, const char *format)
 {
 	int		i;
-	int		j;
 	int		count;
 	int		mark;
 	t_flag	flag;
@@ -68,11 +67,11 @@ int		ft_parse_format(va_list ap, const char *format)
 	{
 		if (format[i] == '%' && mark == 0)
 		{
-			j = i;
+			mark = i;
 			flag = ft_init_flag();
 			while (format[++i] != '\0' && !ft_is_type(format[i]))
 				ft_check_flag(ap, &flag, format, i);
-			if (ft_segfault(&flag, format, &i, &j, &mark))
+			if (ft_segfault(&flag, format, &i, &mark))
 			{
 				ft_flag_priority(&flag);
 				count += ft_print_arg(ap, &flag);

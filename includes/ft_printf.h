@@ -60,6 +60,6 @@ int					ft_is_num(char c);
 int					ft_str_len_num(char *str);
 int					ft_put_str_num(char *str);
 int					ft_segfault(t_flag *flag, \
-const char *format, int *i, int *j, int *mark);
+const char *format, int *i, int *mark);
 
 #endif
