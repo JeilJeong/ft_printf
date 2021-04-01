@@ -41,32 +41,21 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 	return (count);
 }
 
-int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
-{
-	if (!ft_is_type(flag->type = format[*i]))
-	{
-		*i = *mark;
-		return (0);
-	}
-	*mark = -1;
-	*i = *i + 1;
-	ft_flag_priority(flag);
-	return (1);
-}
-
 int		ft_parse_format(va_list ap, const char *format)
 {
 	int		i;
 	int		count;
 	int		mark;
 	t_flag	flag;
+	int		c;
 
 	i = 0;
 	count = 0;
 	mark = -1;
+	c = 0;
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && mark == -1)
+		if (format[i] == '%' && mark == -1 && c == 0)
 		{
 			mark = i;
 			flag = ft_init_flag();
@@ -76,7 +65,7 @@ int		ft_parse_format(va_list ap, const char *format)
 				count += ft_print_arg(ap, &flag);
 		}
 		else
-			count += ft_putchar(format[i++], 1);
+			count += ft_putchar(ft_pct(format[i++], &c, &mark, &i), 1);
 	}
 	return (count);
 }
