@@ -19,7 +19,7 @@ char	*ft_join_buf(char *buf_1, char *buf_2)
 	int 	i;
 	int	j;
 
-	ret_len = ft_str_len(buf_1) + ft_str_len(buf_2);
+	ret_len = ft_str_len_num(buf_1) + ft_str_len_num(buf_2);
 	if ((ret = (char *)malloc(sizeof(char) * (ret_len + 1))) == NULL)
 		return (NULL);
 	i = 0;
@@ -92,8 +92,8 @@ void	ft_put_width_num(char **buf, t_flag *flag)
 	int	ret_len;
 
 	i = 0;
-	ret_len = flag->width - ft_str_len(*buf);
-	if (flag->width > ft_str_len(*buf))
+	ret_len = flag->width - ft_str_len_num(*buf);
+	if (flag->width > ft_str_len_num(*buf))
 	{
 		if ((ret = (char *)malloc(sizeof(char) * (ret_len + 1))) == NULL)
 			return ;
@@ -125,7 +125,7 @@ int		ft_print_int(unsigned long long num, t_flag *flag)
 	if ((flag->type == 'd' || flag->type == 'i') && flag->zero == 1)
 		buf = ft_put_neg_mark(buf, num);
 	ft_put_str_num(buf);
-	len = ft_str_len(buf);
+	len = ft_str_len_num(buf);
 	free(buf);
 	return (len);
 }

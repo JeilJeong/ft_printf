@@ -44,7 +44,7 @@ int		ft_is_num(char c)
 	return (0);
 }
 
-int		ft_str_len(char *str)
+int		ft_str_len_num(char *str)
 {
 	int	i;
 
