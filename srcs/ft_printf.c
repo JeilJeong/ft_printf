@@ -65,7 +65,7 @@ int		ft_parse_format(va_list ap, const char *format)
 				count += ft_print_arg(ap, &flag);
 		}
 		else
-			count += ft_putchar(ft_pct(format[i++], &c, &mark, &i), 1);
+			count += ft_pct_put_char(format[i++], &c, &mark, &i);
 	}
 	return (count);
 }

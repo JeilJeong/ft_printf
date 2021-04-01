@@ -25,7 +25,7 @@ int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
 	return (1);
 }
 
-char	ft_pct(char c, int *check, int *mark, int *i)
+int		ft_pct_put_char(char c, int *check, int *mark, int *i)
 {
 	if (c == '%')
 	{
@@ -35,8 +35,8 @@ char	ft_pct(char c, int *check, int *mark, int *i)
 			*check = 0;
 			*mark = -1;
 			*i += -1;
-			return ('\0');
+			return (0);
 		}
 	}
-	return (c);
+	return (ft_putchar(c, 1));
 }
