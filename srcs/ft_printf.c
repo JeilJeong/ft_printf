@@ -6,7 +6,7 @@
 /*   By: jejeong <jejeong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:30:31 by jejeong           #+#    #+#             */
-/*   Updated: 2021/04/01 12:29:03 by jejeong          ###   ########.fr       */
+/*   Updated: 2021/04/01 14:28:21 by jejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,40 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 	return (count);
 }
 
+int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
+{
+	if ((flag->type = format[*i]) == '\0')
+	{
+		*mark = 1;
+		*i = 0;
+		return (0);
+	}
+	*i = *i + 1;
+	return (1);
+}
+
 int		ft_parse_format(va_list ap, const char *format)
 {
 	int		i;
 	int		count;
+	int		mark;
 	t_flag	flag;
 
 	i = 0;
 	count = 0;
+	mark = 0;
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && mark == 0)
 		{
 			flag = ft_init_flag();
 			while (format[++i] != '\0' && !ft_is_type(format[i]))
 				ft_check_flag(ap, &flag, format, i);
-			flag.type = format[i++];
-			ft_flag_priority(&flag);
-			count += ft_print_arg(ap, &flag);
+			if (ft_segfault(&flag, format, &i, &mark))
+			{
+				ft_flag_priority(&flag);
+				count += ft_print_arg(ap, &flag);
+			}
 		}
 		else
 			count += ft_putchar(format[i++], 1);
