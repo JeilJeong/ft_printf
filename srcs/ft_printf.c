@@ -45,7 +45,7 @@ int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
 {
 	if ((flag->type = format[*i]) == '\0')
 	{
-		*i = 0;
+		*i = *mark;
 		return (0);
 	}
 	*mark = 0;
