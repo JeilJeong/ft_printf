@@ -43,7 +43,7 @@ int		ft_print_arg(va_list ap, t_flag *flag)
 
 int		ft_segfault(t_flag *flag, const char *format, int *i, int *mark)
 {
-	if ((flag->type = format[*i]) == '\0')
+	if (!ft_is_type(flag->type = format[*i]))
 	{
 		*i = *mark;
 		return (0);
